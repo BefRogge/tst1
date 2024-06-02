@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Кав'ярня</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inconsolata|Roboto:400,700&display=swap">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="bgimg">
+    <div class="overlay">
+        <h1>Вітаємо в нашій кав'ярні</h1>
+        <div class="tag">Кава</div>
+        <div class="location">Львів</div>
+    </div>
+</header>
+
+<nav class="navbar">
+    <a href="#about">Про нас</a>
+    <a href="#menu">Меню</a>
+    <a href="#reservation">Бронювання</a>
+    <a href="#contact">Контакти</a>
+</nav>
+
+<section id="about" class="container">
+    <h2>Про нас</h2>
+    <p>Ми найкраща кав'ярня в місті Львів, пропонуємо широкий вибір кавових напоїв та десертів.</p>
+</section>
+
+<section id="menu" class="container">
+    <h2>Меню</h2>
+    <div class="menu-tab">
+        <div class="tab active" onclick="showMenu('breakfast')">Сніданок</div>
+        <div class="tab" onclick="showMenu('lunch')">Обід</div>
+        <div class="tab" onclick="showMenu('dinner')">Вечеря</div>
+    </div>
+    <div class="menu-content" id="breakfast">
+        <img src="https://www.w3schools.com/w3images/sandwich.jpg" alt="Sandwich">
+    </div>
+    <div class="menu-content" id="lunch" style="display: none;">
+        <img src="https://www.w3schools.com/w3images/steak.jpg" alt="Steak">
+    </div>
+    <div class="menu-content" id="dinner" style="display: none;">
+        <img src="https://www.w3schools.com/w3images/cherries.jpg" alt="Cherries">
+    </div>
+</section>
+
+<section id="reservation" class="container">
+    <h2>Бронювання столика</h2>
+    <form id="reservation-form">
+        <label for="name">Ім'я:</label>
+        <input type="text" id="name" name="name" required>
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+        
+        <label for="date">Дата:</label>
+        <input type="date" id="date" name="date" required>
+        
+        <label for="time">Час:</label>
+        <input type="time" id="time" name="time" required>
+        
+        <label for="guests">Кількість гостей:</label>
+        <input type="number" id="guests" name="guests" min="1" required>
+        
+        <button type="submit">Забронювати</button>
+    </form>
+    <p id="reservation-message" class="hidden"></p>
+</section>
+
+<section id="contact" class="container">
+    <h2>Контакти</h2>
+    <p>Телефон: +380123456789</p>
+    <p>Email: info@coffeehouse.ua</p>
+</section>
+
+<script>
+    function showMenu(menu) {
+        const menus = document.querySelectorAll('.menu-content');
+        menus.forEach(m => m.style.display = 'none');
+        document.getElementById(menu).style.display = 'block';
+
+        const tabs = document.querySelectorAll('.tab');
+        tabs.forEach(t => t.classList.remove('active'));
+        event.target.classList.add('active');
+    }
+
+    document.getElementById('reservation-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const date = document.getElementById('date').value;
+        const time = document.getElementById('time').value;
+        const guests = document.getElementById('guests').value;
+
+        document.getElementById('reservation-message').textContent = `Дякуємо, ${name}. Ваше бронювання на ${date} о ${time} для ${guests} гостей підтверджено.`;
+        document.getElementById('reservation-message').classList.remove('hidden');
+    });
+</script>
+
+</body>
+</html>
